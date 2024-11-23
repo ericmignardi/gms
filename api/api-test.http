@@ -1,0 +1,24 @@
+### Find All Students
+GET http://localhost:8080/api/v1/students
+Content-Type: application/json
+
+### Find Student By ID
+GET http://localhost:8080/api/v1/students/1
+Content-Type: application/json
+
+### Create Student
+POST http://localhost:8080/api/v1/students
+Content-Type: application/json
+
+{
+  "firstName": "Michael",
+  "lastName": "Jasper"
+}
+
+### Update Student By ID
+PUT http://localhost:8080/api/v1/students/1/?firstName=Michael&lastName=Jasper
+Content-Type: application/json
+
+### Delete Student By ID
+DELETE http://localhost:8080/api/v1/students/3
+Content-Type: application/json

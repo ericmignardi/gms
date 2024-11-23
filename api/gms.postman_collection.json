@@ -1,0 +1,323 @@
+{
+	"info": {
+		"_postman_id": "50b21639-1f1d-451f-8e60-3eadcaa12e50",
+		"name": "gms",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34580428"
+	},
+	"item": [
+		{
+			"name": "Guitar",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"brand\": \"JET\",\r\n    \"model\": \"JT-300\",\r\n    \"colour\": \"Sonic Blue\",\r\n    \"type\": \"Electric\",\r\n    \"serialNumber\": \"asdfsdf234rasdfa\",\r\n    \"description\": \"This is an awesome guitar.\",\r\n    \"fileName\": \"jet_guitar.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/guitars",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"guitars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/guitars/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"guitars",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/guitars",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"guitars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"brand\": \"JET\",\r\n    \"model\": \"JT-300\",\r\n    \"colour\": \"Sherwood Green\",\r\n    \"type\": \"Electric\",\r\n    \"serialNumber\": \"asdf23sdfas\",\r\n    \"description\": \"This is a telecaster with two single coils.\",\r\n    \"fileName\": \"1728660135242_jet_guitar.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/guitars/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"guitars",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/guitars/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"guitars",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Authentication/Authorization",
+					"item": [
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Eric\",\r\n    \"lastName\": \"Mignardi\",\r\n    \"username\": \"emignardi\",\r\n    \"password\": \"password\",\r\n    \"role\": \"ADMIN\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Authentication",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"emignardi\",\r\n    \"password\": \"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/authenticate",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"authenticate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Authorization",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJodHRwczovL3d3dy5zdHJhdGFsb2cuY29tIiwic3ViIjoiZW1pZ25hcmRpIiwiaWF0IjoxNzI4NzYyODQ0LCJleHAiOjE3Mjg3NjQ2NDR9.pILtoUSqjECK9_VA-nKHp3njxNeqPNP79qym0FIjnfMlGmP2qCgRrLVJ81TmPnhMgmia4G0uuGjN5QjyC1Nufg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Read",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/read/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"read",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/read",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Michael\",\r\n    \"lastName\": \"Jasper\",\r\n    \"username\": \"emignardi\",\r\n    \"password\": \"password\",\r\n    \"role\": \"USER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJodHRwczovL3d3dy5zdHJhdGFsb2cuY29tIiwic3ViIjoiZW1pZ25hcmRpIiwiaWF0IjoxNzI4ODE5MjI3LCJleHAiOjE3Mjg4MjEwMjd9.7C4UX3dX56FEAUlR5D4fzsK1R6PWKZ7qGEFK0xBaCyc34gfREZU4XV5Z8RLi6Yc0VYLLUNHKvofb67kftulmaQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/delete/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
