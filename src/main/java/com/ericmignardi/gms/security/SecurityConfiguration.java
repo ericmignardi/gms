@@ -30,13 +30,13 @@ public class SecurityConfiguration {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/registration", "/register", "/authenticate", "/").permitAll();
+                    auth.requestMatchers("/registration", "/register", "/authenticate", "/", "").permitAll();
                     auth.requestMatchers("/guitars/**").hasAnyRole("USER", "ADMIN");
                     auth.requestMatchers("/users/**").hasRole("ADMIN");
                     auth.anyRequest().authenticated();
                 })
                 .formLogin(httpSecurityFormLoginConfigurer -> {
-                    httpSecurityFormLoginConfigurer.permitAll();
+                    httpSecurityFormLoginConfigurer.loginPage("/login").permitAll();
                     httpSecurityFormLoginConfigurer.defaultSuccessUrl("/read-guitar");
                 })
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
