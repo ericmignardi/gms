@@ -13,5 +13,4 @@ public class GuitarDTO {
     private String type;
     private String serialNumber;
     private String description;
-    private MultipartFile fileName;
 }

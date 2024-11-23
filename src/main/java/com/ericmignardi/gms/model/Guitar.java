@@ -27,6 +27,4 @@ public class Guitar {
     private String serialNumber;
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
-    @Column(name = "file_name", nullable = false)
-    private String fileName;
 }

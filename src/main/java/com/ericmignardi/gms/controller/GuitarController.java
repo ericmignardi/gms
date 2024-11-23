@@ -8,16 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -64,26 +56,8 @@ public class GuitarController {
     // Operations
     @PostMapping("/create-guitar")
     public String createGuitar(@ModelAttribute("guitarDTO") GuitarDTO guitarDTO, BindingResult result) {
-        if (guitarDTO.getFileName().isEmpty()) {
-            result.addError(new FieldError("guitarDTO", "fileName", "Filename is required"));
-        }
         if (result.hasErrors()) {
             return "pages/create-guitar";
-        }
-        MultipartFile image = guitarDTO.getFileName();
-        Date createdAt = new Date();
-        String storageFileName = createdAt.getTime() + "_" + image.getOriginalFilename();
-        try {
-            String uploadDirectory = "public/images/";
-            Path uploadPath = Paths.get(uploadDirectory);
-            if (!Files.exists(uploadPath)) {
-                Files.createDirectories(uploadPath);
-            }
-            try (InputStream inputStream = image.getInputStream()) {
-                Files.copy(inputStream, Paths.get(uploadDirectory + storageFileName), StandardCopyOption.REPLACE_EXISTING);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         Guitar guitar = new Guitar();
         guitar.setBrand(guitarDTO.getBrand());
@@ -92,7 +66,6 @@ public class GuitarController {
         guitar.setType(guitarDTO.getType());
         guitar.setSerialNumber(guitarDTO.getSerialNumber());
         guitar.setDescription(guitarDTO.getDescription());
-        guitar.setFileName(storageFileName);
         guitarService.create(guitar);
         return "redirect:/read-guitar";
     }
@@ -104,22 +77,6 @@ public class GuitarController {
             model.addAttribute("guitar", guitar);
             if (result.hasErrors()) {
                 return "pages/update-guitar";
-            }
-            if (!guitarDTO.getFileName().isEmpty()) {
-                String uploadDirectory = "public/images/";
-                Path oldImagePath = Paths.get(uploadDirectory + guitar.getFileName());
-                try {
-                    Files.delete(oldImagePath);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                MultipartFile image = guitarDTO.getFileName();
-                Date createdAt = new Date();
-                String storageFileName = createdAt.getTime() + "_" + image.getOriginalFilename();
-                try (InputStream inputStream = image.getInputStream()) {
-                    Files.copy(inputStream, Paths.get(uploadDirectory + storageFileName), StandardCopyOption.REPLACE_EXISTING);
-                }
-                guitar.setFileName(storageFileName);
             }
             guitar.setBrand(guitarDTO.getBrand());
             guitar.setModel(guitarDTO.getModel());
@@ -136,18 +93,7 @@ public class GuitarController {
 
     @GetMapping("/delete-guitar")
     public String deleteGuitar(@RequestParam Long id) {
-        try {
-            Guitar guitar = guitarService.readById(id);
-            Path imagePath = Paths.get("public/images/" + guitar.getFileName());
-            try {
-                Files.delete(imagePath);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            guitarService.delete(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        guitarService.delete(id);
         return "redirect:/read-guitar";
     }
 

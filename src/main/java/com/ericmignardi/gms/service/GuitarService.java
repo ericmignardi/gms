@@ -33,7 +33,6 @@ public class GuitarService {
         updatedGuitar.setType(guitar.getType());
         updatedGuitar.setSerialNumber(guitar.getSerialNumber());
         updatedGuitar.setDescription(guitar.getDescription());
-        updatedGuitar.setFileName(guitar.getFileName());
         return guitarRepository.save(updatedGuitar);
     }
 
