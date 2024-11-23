@@ -3,8 +3,7 @@
 A Guitar Management System built with Java and Spring Framework that allows for the management of guitar data with CRUD operations. This application utilizes Spring Boot for easy setup and configuration, Spring Security for secure authentication, and Thymeleaf for rendering dynamic web pages.
 
 ## Render URL
-- https://gms-q1b2.onrender.com/
-- https://gms-q1b2.onrender.com/registration
+- https://gms-qsr1.onrender.com
 
 ## Features
 
