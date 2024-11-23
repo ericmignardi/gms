@@ -43,8 +43,7 @@ class GuitarControllerTest {
                 "Olympic White",
                 "Electric",
                 "asdfsdf23",
-                "Cool guitar",
-                "starcaster.jpg");
+                "Cool guitar");
         guitarJson = objectMapper.writeValueAsString(defaultGuitar);
     }
 
@@ -109,8 +108,7 @@ class GuitarControllerTest {
                 "Shell Pink",
                 "Electric",
                 "asdfsdf23",
-                "Cool guitar",
-                "starcaster.jpg");
+                "Cool guitar");
         String updatedJson = objectMapper.writeValueAsString(updatedGuitar);
         MvcResult updateResult = mockMvc.perform(put("/guitars/{id}", 1L)
                         .content(updatedJson)
@@ -136,74 +134,4 @@ class GuitarControllerTest {
                 .andReturn();
         assertThat(deleteResult.getResponse().getContentAsString()).isEqualTo(guitarJson);
     }
-
-
-
-//    @Autowired
-//    TestRestTemplate testRestTemplate;
-
-//    @Test
-//    @Disabled
-//    void shouldFindAllGuitars() {
-//        ResponseEntity<List<Guitar>> response = testRestTemplate.exchange("/guitars", HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
-//        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-//        assertThat(response.getBody()).isNotNull();
-//    }
-//
-//    @Test
-//    @Disabled
-//    void shouldFindGuitarByIdWhenValid() {
-//        ResponseEntity<Guitar> response = testRestTemplate.exchange("/guitars/1", HttpMethod.GET, null, Guitar.class);
-//        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-//        assertThat(response.getBody()).isNotNull();
-//    }
-//
-//    @Test
-//    @Disabled
-//    void shouldCreateGuitar() {
-//        Guitar guitar = new Guitar(1L, "Squier", "Starcaster", "Olympic White", "Electric", "asdfsdf23", "Cool guitar", "starcaster.jpg");
-//        ResponseEntity<Guitar> response = testRestTemplate.exchange("/guitars", HttpMethod.POST, new HttpEntity<>(guitar), Guitar.class);
-//        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-//        assertThat(response.getBody()).isNotNull();
-//        ResponseEntity<Guitar> response1 = testRestTemplate.exchange("/guitars/1", HttpMethod.GET, null, Guitar.class);
-//        assertThat(response1.getStatusCode()).isEqualTo(HttpStatus.OK);
-//        assertThat(response1.getBody().getBrand()).isEqualTo("Squier");
-//        assertThat(response1.getBody().getModel()).isEqualTo("Starcaster");
-//        assertThat(response1.getBody().getColour()).isEqualTo("Olympic White");
-//        assertThat(response1.getBody().getType()).isEqualTo("Electric");
-//        assertThat(response1.getBody().getSerialNumber()).isEqualTo("asdfsdf23");
-//        assertThat(response1.getBody().getDescription()).isEqualTo("Cool guitar");
-//        assertThat(response1.getBody().getFileName()).isEqualTo("starcaster.jpg");
-//    }
-//
-//    @Test
-//    @Disabled
-//    void shouldUpdateGuitar() {
-//        Guitar guitar = new Guitar(1L, "Squier", "Starcaster", "Olympic White", "Electric", "asdfsdf23", "Cool guitar", "starcaster.jpg");
-//        ResponseEntity<Guitar> response = testRestTemplate.exchange("/guitars", HttpMethod.POST, new HttpEntity<>(guitar), Guitar.class);
-//        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-//        assertThat(response.getBody()).isNotNull();
-//        Guitar guitarToUpdate = new Guitar(1L, "Fender", "Starcaster", "Olympic White", "Electric", "asdfsdf23", "Cool guitar", "starcaster.jpg");
-//        ResponseEntity<Guitar> response2 = testRestTemplate.exchange("/guitars/1", HttpMethod.PUT, new HttpEntity<>(guitarToUpdate), Guitar.class);
-//        assertThat(response2.getStatusCode()).isEqualTo(HttpStatus.OK);
-//        assertThat(response2.getBody()).isNotNull();
-//        ResponseEntity<Guitar> response3 = testRestTemplate.exchange("/guitars/1", HttpMethod.GET, null, Guitar.class);
-//        assertThat(response3.getStatusCode()).isEqualTo(HttpStatus.OK);
-//        assertThat(response3.getBody().getBrand()).isEqualTo("Fender");
-//    }
-//
-//    @Test
-//    @Disabled
-//    void shouldDeleteGuitar() {
-//        Guitar guitar = new Guitar(1L, "Squier", "Starcaster", "Olympic White", "Electric", "asdfsdf23", "Cool guitar", "starcaster.jpg");
-//        ResponseEntity<Guitar> response = testRestTemplate.exchange("/guitars", HttpMethod.POST, new HttpEntity<>(guitar), Guitar.class);
-//        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-//        assertThat(response.getBody()).isNotNull();
-//        ResponseEntity<Guitar> response2 = testRestTemplate.exchange("/guitars/1", HttpMethod.GET, null, Guitar.class);
-//        assertThat(response2.getStatusCode()).isEqualTo(HttpStatus.OK);
-//        ResponseEntity<Guitar> response3 = testRestTemplate.exchange("/guitars/1", HttpMethod.DELETE, null, Guitar.class);
-//        assertThat(response3.getStatusCode()).isEqualTo(HttpStatus.OK);
-//        ResponseEntity<Guitar> response4 = testRestTemplate.exchange("/guitars/1", HttpMethod.GET, null, Guitar.class);
-//        assertThat(response4.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
-//    }
 }

@@ -34,8 +34,7 @@ class GuitarServiceTest {
                 "Olympic White",
                 "Electric",
                 "asdfasdfas",
-                "This is a cool guitar.",
-                "starcaster.jpg");
+                "This is a cool guitar.");
     }
 
     @Test
@@ -62,8 +61,7 @@ class GuitarServiceTest {
                 "Olympic White",
                 "Electric",
                 "asdfasdfas",
-                "This is a cool guitar.",
-                "starcaster.jpg"));
+                "This is a cool guitar."));
         when(guitarRepositoryMock.findAll()).thenReturn(guitars);
         List<Guitar> guitars1 = guitarService.readAll();
         assertThat(guitars1).isEqualTo(guitars);

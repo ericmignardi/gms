@@ -46,8 +46,7 @@ class GuitarRepositoryTestcontainersTest {
                 "Olympic White",
                 "Electric",
                 "asdfasdfas",
-                "This is a cool guitar.",
-                "starcaster.jpg");
+                "This is a cool guitar.");
         guitarRepository.save(guitar);
     }
 
@@ -72,8 +71,7 @@ class GuitarRepositoryTestcontainersTest {
                 "Olive Drab",
                 "Electric",
                 "asdfaasdfsdfas",
-                "This is a another cool guitar.",
-                "es-333.jpg");
+                "This is a another cool guitar.");
         guitarRepository.save(newGuitar);
         Optional<Guitar> optionalGuitar = guitarRepository.findById(newGuitar.getId());
         assertThat(optionalGuitar.isPresent()).isTrue();
